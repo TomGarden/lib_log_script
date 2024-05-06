@@ -201,24 +201,24 @@ function colorEcho() {
 
     formatAppendEnd
 
-    local Current_Datetime=$(date +"%Y-%m-%d %H:%M:%S %Z")
-    echo "$format $msg $Off_Color"
-    echo -n -e "$format$Current_Datetime $TAG  $msg$Off_Color\n"
-    sleep 3
+    local Current_Datetime=$(date +"%Y-%m-%d %H:%M:%S.%3N %:z")
+    #echo "$format $msg $Off_Color"
+    echo -n -e "$format$Current_Datetime $TAG $msg$Off_Color\n"
+    #sleep 3
 }
 
 function log_i() {
-  colorEcho -fg "$Zero" -msg "$1"
+  colorEcho -fg "$Zero" -msg "[I]:  $1"
 }
 function log_d() {
-  colorEcho -fg "$Green" -msg "$1"
+  colorEcho -fg "$Green" -msg "[D]:  $1"
 }
 function log_w() {
-  colorEcho -fg "$Yellow" -msg "$1"
+  colorEcho -fg "$Yellow" -msg "[W]:  $1"
 }
 
 function log_e() {
-  colorEcho -fg "$Red" -msg "$1"
+  colorEcho -fg "$Red" -msg "[E]:  $1"
 }
 
 

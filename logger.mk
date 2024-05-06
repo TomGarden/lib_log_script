@@ -25,24 +25,35 @@ TAG := TomYeo
 
 # 定义不同级别的日志函数
 define LogI
-	@echo "$(Off_Color)`date +"%Y-%m-%d %H:%M:%S %Z"` $(TAG)  $(1)$(Off_Color)"
-	@sleep 1
+	@echo "$(Off_Color)`date +"%Y-%m-%d %H:%M:%S.%3N %:z"` $(TAG) [I]:  $(1)$(Off_Color)"
 endef
 
 define LogD
-    @echo "$(Start_Color)$(Green)$(End_Color)`date +"%Y-%m-%d %H:%M:%S %Z"` $(TAG)  $(1)$(Off_Color)"
-    @sleep 1
+    @echo "$(Start_Color)$(Green)$(End_Color)`date +"%Y-%m-%d %H:%M:%S.%3N %:z"` $(TAG) [D]:  $(1)$(Off_Color)"
 endef
 
 define LogW
-    @echo "$(Start_Color)$(Yellow)$(End_Color)`date +"%Y-%m-%d %H:%M:%S %Z"` $(TAG)  $(1)$(Off_Color)"
-    @sleep 1
+    @echo "$(Start_Color)$(Yellow)$(End_Color)`date +"%Y-%m-%d %H:%M:%S.%3N %:z"` $(TAG) [W]:  $(1)$(Off_Color)"
 endef
 
 define LogE
-    @echo "$(Start_Color)$(Red)$(End_Color)`date +"%Y-%m-%d %H:%M:%S %Z"` $(TAG)  $(1)$(Off_Color)"
-    @sleep 1
+    @echo "$(Start_Color)$(Red)$(End_Color)`date +"%Y-%m-%d %H:%M:%S.%3N %:z"` $(TAG) [E]:  $(1)$(Off_Color)"
 endef
+
+
+.PHONY: .TOM_YEO_LOG
+.TOM_YEO_LOG:
+
+
+
+#.PHONY: .LogI
+#	$(call LogI, $(LogMSG))
+#.PHONY: .LogD
+#	$(call LogD, $(LogMSG))
+#.PHONY: .LogW
+#	$(call LogW, $(LogMSG))
+#.PHONY: .LogE
+#	$(call LogE, $(LogMSG))
 
 #example:
 #	$(call LogE, "log_e: makefile-日志\\n换行文本")
