@@ -203,7 +203,7 @@ function colorEcho() {
 
     local Current_Datetime=$(date +"%Y-%m-%d %H:%M:%S.%3N %:z")
     #echo "$format $msg $Off_Color"
-    echo -n -e "$format$Current_Datetime $TAG $msg$Off_Color\n"
+    echo -n -e "$format$Current_Datetime $TAG $msg$Off_Color"
     #sleep 3
 }
 
@@ -237,3 +237,31 @@ function log_e() {
 #}
 #
 #testEcho
+
+
+function yes_or_no() {
+  # 接收一个字符串参数 , 等待用户输入 yes/no 
+  # yes return  0 
+  #  no return !0
+  local msg=$1
+
+  if [ -z "$msg" ]; then
+    log_e 'fun[yes_or_no] 不接受空参数 , 请输入询问字符串 , return 1'
+    return 1
+  fi
+
+  log_i "$msg \t 请输入[y(es)/n(o)]:"
+  local OPTION
+  read OPTION
+  # 将 OPTION 转换为小写字母
+  local OPTION_LOWER=$(echo "$OPTION" | tr '[:upper:]' '[:lower:]')
+  #local OPTION_LOWER=${OPTION,,}
+  if [ "$OPTION_LOWER" = "yes" ] || [ "$OPTION_LOWER" = "y" ]; then
+    echo   "判定输入为[YES]"
+    return 0
+  else
+    echo    "判定输入为[NO]"
+    return 2
+  fi
+
+}
